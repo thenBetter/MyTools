@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\bin\Debug\UniversalTools.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\bin\Debug\UniversalTools.pdb
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\bin\Debug\UnityEditor.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\bin\Debug\UnityEngine.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\bin\Debug\UnityEngine.UI.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\obj\Debug\UniversalTools.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\obj\Debug\UniversalTools.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\obj\Debug\UniversalTools.csproj.CopyComplete
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\obj\Debug\UniversalTools.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\UniversalTools\obj\Debug\UniversalTools.pdb
