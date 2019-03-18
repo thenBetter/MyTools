@@ -202,5 +202,26 @@ namespace UniversalTools
             }
             return array;
         }
+
+        /// <summary>
+        /// 数字转为中文的一 二 三 
+        /// </summary>
+        /// <param name="inputNumber">11</param>
+        /// <param name="value">十一</param>
+        public static void ChineseByNumber(string inputNumber, out string value)
+        {
+            string[] intArr = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", };
+            string[] strArr = { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九", };
+            string[] Chinese = { "", "十", "百", "千", "万", "十", "百", "千", "亿" };
+
+            char[] tmpArr = inputNumber.ToString().ToCharArray();
+            string tmpVal = "";
+            for (int i = 0; i < tmpArr.Length; i++)
+            {
+                tmpVal += strArr[tmpArr[i] - 48];//ASCII编码 0为48
+                tmpVal += Chinese[tmpArr.Length - 1 - i];//根据对应的位数插入对应的单位
+            }
+            value = tmpVal;
+        }
     }
 }
