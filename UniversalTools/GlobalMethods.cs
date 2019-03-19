@@ -148,6 +148,7 @@ namespace UniversalTools
         public static void AddGameObject(GameObject prefab, Transform parent)
         {
             GameObject temp = GameObject.Instantiate(prefab, parent);
+            temp.transform.localPosition = Vector3.zero;
             temp.transform.localScale = Vector3.one;
         }
 
@@ -222,6 +223,106 @@ namespace UniversalTools
                 tmpVal += Chinese[tmpArr.Length - 1 - i];//根据对应的位数插入对应的单位
             }
             value = tmpVal;
+        }
+
+        /// <summary>
+        /// 返回指定的颜色在纹理上的位置
+        /// </summary>
+        /// <param name="color">指定的颜色</param>
+        /// <param name="texture">所在的纹理</param>
+        /// <returns></returns>
+        public static void GetVectorByColor(Color color, Texture2D texture, out  Vector3 colorPos)
+        {
+            colorPos = Vector3.zero;
+            Color32[] colors = texture.GetPixels32();
+            for (int i = 0; i < texture.width; i++)
+            {
+                for (int j = 0; j < texture.height; j++)
+                {
+                    Color32 c = colors[(texture.width * j) + i];
+                    if (c.a <= 0) continue;
+                    string temp = string.Format("{0},{1},{2}", c.r, c.g, c.b);
+                    string colorString = string.Format("{0:F0},{1:F0},{2:F0}", color.r * 255, color.g * 255, color.b * 255);
+                    if (temp.Equals(colorString))
+                    {
+                        colorPos = new Vector3(i, j, 0);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 字符串转颜色值
+        /// </summary>
+        /// <param name="value">字符串按 _ 分割 </param>
+        /// <param name="color">返回的颜色值</param>
+        public static void ReturnColorByString(string value, out Color color)
+        {
+            color = Color.black;
+            string[] tempValues = value.Split('_');
+            float r = 0;
+            float g = 0;
+            float b = 0;
+            float a = 1;
+            r = float.Parse(tempValues[0])/255f;
+            g = float.Parse(tempValues[1])/255f;
+            b = float.Parse(tempValues[2])/255f;
+            a = tempValues.Length == 4 ? float.Parse(tempValues[3])/255f : 1;
+
+            color = new Color(r, g, b, a);
+        }
+
+        /// <summary>
+        ///放回在拖拽中拖拽物体下面的物体个数
+        /// </summary>
+        /// <param name="eventData"></param>
+        /// <returns></returns>
+        public static List<UnityEngine.EventSystems.RaycastResult> GetRaycastHitCout(UnityEngine.EventSystems.PointerEventData eventData)
+        {
+            List<UnityEngine.EventSystems.RaycastResult> results = new List<UnityEngine.EventSystems.RaycastResult>();
+            UnityEngine.EventSystems.EventSystem.current.RaycastAll(eventData, results);
+            return results;
+        }
+
+        /// <summary>
+        /// 当前鼠标点击下的UI物体
+        /// </summary>
+        /// <returns></returns>
+        public static GameObject CurrentClickUIName()
+        {
+            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = new Vector2
+            (
+#if UNITY_EDITOR || UNITY_STANDALONE
+            Input.mousePosition.x, Input.mousePosition.y
+#endif
+        );
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            if (results.Count > 0)
+                return results[0].gameObject;
+            return null;
+        }
+
+        //立即获取ContentSizeFitter的区域
+        public static Vector2 GetPreferredSize(GameObject obj)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(obj.GetComponent<RectTransform>());
+            return new Vector2(HandleSelfFittingAlongAxis(0, obj), HandleSelfFittingAlongAxis(1, obj));
+        }
+        //获取宽和高
+        private static float HandleSelfFittingAlongAxis(int axis, GameObject obj)
+        {
+            UnityEngine.UI.ContentSizeFitter.FitMode fitting = (axis == 0 ? obj.GetComponent<ContentSizeFitter>().horizontalFit : obj.GetComponent<ContentSizeFitter>().verticalFit);
+            if (fitting == UnityEngine.UI.ContentSizeFitter.FitMode.MinSize)
+            {
+                return LayoutUtility.GetMinSize(obj.GetComponent<RectTransform>(), axis);
+            }
+            else
+            {
+                return LayoutUtility.GetPreferredSize(obj.GetComponent<RectTransform>(), axis);
+            }
         }
     }
 }
