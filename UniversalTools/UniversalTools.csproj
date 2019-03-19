@@ -57,11 +57,13 @@
     <Compile Include="MessageCenter.cs" />
     <Compile Include="OnDontDestroySingleton.cs" />
     <Compile Include="OpenAndSaveDialog.cs" />
+    <Compile Include="PageContentManger.cs" />
     <Compile Include="Pool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Singleton.cs" />
     <Compile Include="UGUIDragFollow.cs" />
     <Compile Include="UGUIEventTriggerListern.cs" />
+    <Compile Include="UIPage.cs" />
     <Compile Include="VerticalText.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
