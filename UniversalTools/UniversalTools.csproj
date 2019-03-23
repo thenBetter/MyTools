@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="FileDlg.cs" />
+    <Compile Include="FPSManger.cs" />
     <Compile Include="GlobalMethods.cs" />
     <Compile Include="HttpDownLoad.cs" />
     <Compile Include="MessageCenter.cs" />

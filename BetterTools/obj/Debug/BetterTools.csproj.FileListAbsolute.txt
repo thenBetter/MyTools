@@ -1,0 +1,6 @@
+C:\Users\Administrator\Desktop\MyTools\BetterTools\BetterTools\bin\Debug\BetterTools.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\BetterTools\bin\Debug\BetterTools.pdb
+C:\Users\Administrator\Desktop\MyTools\BetterTools\BetterTools\obj\Debug\BetterTools.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\MyTools\BetterTools\BetterTools\obj\Debug\BetterTools.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\MyTools\BetterTools\BetterTools\obj\Debug\BetterTools.dll
+C:\Users\Administrator\Desktop\MyTools\BetterTools\BetterTools\obj\Debug\BetterTools.pdb

@@ -324,5 +324,10 @@ namespace UniversalTools
                 return LayoutUtility.GetPreferredSize(obj.GetComponent<RectTransform>(), axis);
             }
         }
+
+        public static void Debug(object o)
+        {
+
+        }
     }
 }
