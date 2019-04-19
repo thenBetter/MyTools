@@ -3,18 +3,8 @@ using System.Collections;
 /// <summary>
 /// 分发消息类(TODO)
 /// </summary>
-public class MessageCenter : MonoBehaviour
+public abstract class MessageCenter
 {
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    //具体的消息
+    public struct Message { }
 }

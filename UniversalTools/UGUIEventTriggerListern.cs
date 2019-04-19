@@ -63,8 +63,5 @@ public class UGUIEventTriggerListern : EventTrigger
     public override void OnSubmit(BaseEventData eventData)
     {
         if (onSubmiet != null) onSubmiet(gameObject);
-        {
-
-        }
     }
 }

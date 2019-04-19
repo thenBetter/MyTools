@@ -325,9 +325,13 @@ namespace UniversalTools
             }
         }
 
+        /// <summary>
+        /// 记录消息
+        /// </summary>
+        /// <param name="o">消息</param>
         public static void Debug(object o)
         {
-
+            UnityEngine.Debug.Log("Message:" + o.ToString());
         }
     }
 }

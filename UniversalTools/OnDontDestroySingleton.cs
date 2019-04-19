@@ -30,7 +30,10 @@ public class OnDontDestroySingleton<T> : MonoBehaviour  where T : OnDontDestroyS
     /// <summary>
     /// 退出事件
     /// </summary>
-    private void OnApplicationQuit() { }
+    private void OnApplicationQuit()
+    {
+
+    }
 
     /// <summary>
     /// 释放事件
