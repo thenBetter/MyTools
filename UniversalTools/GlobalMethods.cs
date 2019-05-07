@@ -339,7 +339,6 @@ namespace UniversalTools
         /// </summary>
         public static string AssetPath
         {
-
             get
             {
                 string str = "";
