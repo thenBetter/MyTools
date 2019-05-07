@@ -333,5 +333,31 @@ namespace UniversalTools
         {
             UnityEngine.Debug.Log("Message:" + o.ToString());
         }
+
+        /// <summary>
+        /// 通用的地址                                                      
+        /// </summary>
+        public static string AssetPath
+        {
+
+            get
+            {
+                string str = "";
+                switch (Application.platform)
+                {
+                    case RuntimePlatform.Android:
+                        str += "jar:file://" + Application.dataPath + "!/assets/";  //Application.streamingAssetsPath  + "wenjian"
+                        break;
+                    case RuntimePlatform.IPhonePlayer:
+                        str += Application.dataPath + "/Raw/";
+                        break;
+                    case RuntimePlatform.WindowsPlayer:
+                    case RuntimePlatform.WindowsEditor:
+                        str += Application.streamingAssetsPath + "/";
+                        break;
+                }
+                return str;
+            }
+        }
     }
 }
