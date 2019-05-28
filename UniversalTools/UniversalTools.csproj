@@ -68,6 +68,7 @@
     <Compile Include="UGUIDragFollow.cs" />
     <Compile Include="UGUIEventTriggerListern.cs" />
     <Compile Include="UIPage.cs" />
+    <Compile Include="UntiyMath.cs" />
     <Compile Include="VerticalText.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
