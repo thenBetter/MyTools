@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -358,5 +361,26 @@ namespace UniversalTools
                 return str;
             }
         }
+
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
+        public void SendEmail()
+        {
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("312253260@qq.com");
+            mail.To.Add("1535477644@qq.com");
+            mail.Subject = "text mail";  //头部
+            mail.Body = "";              //邮件内容
+            string path = Application.streamingAssetsPath + "/Demo.pdf";
+            mail.Attachments.Add(new Attachment(path));
+            SmtpClient smtpServer = new SmtpClient("smtp.qq.com");
+            //密码为基于smtp的服务密码
+            smtpServer.Credentials = new System.Net.NetworkCredential("312253260@qq.com", "umjjqwljjmwlcbcj") as ICredentialsByHost;
+            smtpServer.EnableSsl = true;
+            ServicePointManager.ServerCertificateValidationCallback = delegate (object o, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+            smtpServer.Send(mail);
+        }
     }
+
 }

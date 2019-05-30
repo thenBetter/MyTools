@@ -9,7 +9,7 @@ namespace UniversalTools
     public class UntiyMath
     {
         /// <summary>
-        /// 一个点在一条线段上移动一定距离后的点
+        /// 一个点在一条线段上移动一定距离后的点 斜率不为0
         /// </summary>
         /// <param name="moveDis">移动的距离</param>
         /// <param name="curX">起始点</param>
@@ -40,6 +40,22 @@ namespace UniversalTools
             float k = (y1 - y2) / (x1 - x2);
             float b = (x1 * y2 - x2 * y1) / (x1 - x2);
             return new Vector2(k, b);
+        }
+
+
+        /// <summary>
+        /// 点到线段的垂直距离
+        /// </summary>
+        /// <param name="point">点</param>
+        /// <param name="startPoint">线段的起始点</param>
+        /// <param name="endPoint">线段的终止点</param>
+        /// <returns></returns>
+        public static double GetPointDistanceLine(Vector2 point, Vector2 startPoint, Vector2 endPoint)
+        {
+            double distance = 0;
+            //判断是否平行
+            
+            return distance;
         }
     }
 }
