@@ -308,6 +308,37 @@ namespace UniversalTools
             return null;
         }
 
+        /// <summary>
+        /// 获取点击到UGUI的物体名字
+        /// </summary>
+        public static string GetClickOnUGUI
+        {
+            get
+            {
+                PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+                Vector2 vector = Vector2.zero;
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            vector = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+#elif UNITY_ANDROID || UNITY_IOS
+        float x = Input.touchCount > 0 ? Input.GetTouch(0).position.x : 0 ;
+        float y = Input.touchCount > 0 ? Input.GetTouch(0).position.y : 0;
+        vector =  new Vector2(x, y);
+#endif
+                eventDataCurrentPosition.position = vector;
+                List<RaycastResult> results = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+                if (results.Count > 0) return results[0].gameObject.name;
+                else
+                {
+                    if (EventSystem.current.currentSelectedGameObject != null)
+                    {
+                        return EventSystem.current.currentSelectedGameObject.name;
+                    }
+                    else return null;
+                }
+            }
+        }
+
         //立即获取ContentSizeFitter的区域
         public static Vector2 GetPreferredSize(GameObject obj)
         {
