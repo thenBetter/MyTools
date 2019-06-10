@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Convert.cs" />
+    <Compile Include="CoroutineRunner.cs" />
     <Compile Include="FileDlg.cs" />
     <Compile Include="FileManger.cs" />
     <Compile Include="FPSManger.cs" />
