@@ -412,6 +412,24 @@ namespace UniversalTools
             ServicePointManager.ServerCertificateValidationCallback = delegate (object o, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
             smtpServer.Send(mail);
         }
+
+        public static void GetBoxColliderCorner(GameObject target, out List<Vector2> vectors)
+        {
+            vectors = new List<Vector2>();
+            BoxCollider boxCollider = target.GetComponent<BoxCollider>();
+            Vector3 p1 = target.transform.InverseTransformPoint(new Vector2(boxCollider.bounds.min.x, boxCollider.bounds.min.y));
+            vectors.Add(new Vector2(p1.x, p1.y));
+
+            Vector3 p2 = target.transform.InverseTransformPoint(new Vector2(boxCollider.bounds.min.x, boxCollider.bounds.max.y));
+            vectors.Add(new Vector2(p2.x, p2.y));
+
+            Vector3 p3 = target.transform.InverseTransformPoint(new Vector2(boxCollider.bounds.max.x, boxCollider.bounds.max.y));
+            vectors.Add(new Vector2(p3.x, p3.y));
+
+            Vector3 p4 = target.transform.InverseTransformPoint(new Vector2(boxCollider.bounds.max.x, boxCollider.bounds.min.y));
+            vectors.Add(new Vector2(p4.x, p4.y));
+        }
+
     }
 
 }

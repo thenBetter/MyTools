@@ -36,18 +36,16 @@ namespace UniversalTools
         {
             if (string.IsNullOrEmpty(value)) return Color.white;
             string[] strArray = value.Split(split);
-            if (strArray.Length < 3) return Color.white;
-            float r = 1;
-            float g = 1;
-            float b = 1;
-            float a = 1;
-            r = float.Parse(strArray[0]) / 255f;
-            g = float.Parse(strArray[1]) / 255f;
-            b = float.Parse(strArray[2]) / 255f;
-            if (strArray.Length == 4)
-                a = float.Parse(strArray[3]) / 255f;
+            float[] f = new float[4] { 0f, 0f, 0f, 255f };
+            for (int i = 0; i < strArray.Length && i < f.Length; i++)
+                f[i] = float.Parse(strArray[i]);
 
-            return new Color(r, g, b, a);
+            return new Color(f[0] / 255f, f[1] / 255f, f[2] / 255f, f[3] / 255f);
+        }
+
+        public static float StringToFloat(string value)
+        {
+            return System.Convert.ToSingle(value);
         }
     }
 }
