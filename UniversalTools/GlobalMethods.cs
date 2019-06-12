@@ -413,6 +413,7 @@ namespace UniversalTools
             smtpServer.Send(mail);
         }
 
+        //获取当前2d物体的AABB
         public static void GetBoxColliderCorner(GameObject target, out List<Vector2> vectors)
         {
             vectors = new List<Vector2>();
