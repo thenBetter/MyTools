@@ -57,6 +57,7 @@
     <Compile Include="FileManger.cs" />
     <Compile Include="FPSManger.cs" />
     <Compile Include="GlobalMethods.cs" />
+    <Compile Include="HideMobileKeyBoard.cs" />
     <Compile Include="HttpDownLoad.cs" />
     <Compile Include="LogInfo.cs" />
     <Compile Include="MessageCenter.cs" />
