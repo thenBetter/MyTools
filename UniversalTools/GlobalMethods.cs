@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Security;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 /// <summary>
 /// Author : better
 /// DataTime: 2017-12-28
@@ -18,6 +21,54 @@ namespace UniversalTools
 {
     public  class GlobalMethods
     {
+
+        public static int Int(object o)
+        {
+            return System.Convert.ToInt32(o);
+        }
+
+        public static float Float(object o)
+        {
+            return (float)Math.Round(System.Convert.ToSingle(o), 2);
+        }
+
+        public static long Long(object o)
+        {
+            return System.Convert.ToInt64(o.ToString(), 16);
+        }
+
+        public static int Random(int min, int max)
+        {
+            return UnityEngine.Random.Range(min, max);
+        }
+
+        public static float Random(float min, float max)
+        {
+            return UnityEngine.Random.Range(min, max);
+        }
+
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="uid"></param>
+       /// <returns></returns>
+        public static string Uid(string uid)
+        {
+            int position = uid.LastIndexOf('_');
+            return uid.Remove(0, position + 1);
+        }
+        static long norTime = new DateTime(1970, 1, 1, 0, 0, 0).Ticks;
+        /// <summary>
+        /// 获取当前时间
+        /// </summary>
+        /// <returns></returns>
+        public static long GetTime()
+        {
+            TimeSpan ts = new TimeSpan(DateTime.UtcNow.Ticks - norTime);
+            return (long)ts.TotalMilliseconds;
+        }
+
+
         /// <summary>
         /// 获取地理位置的url
         /// </summary>
@@ -144,6 +195,63 @@ namespace UniversalTools
         }
 
         /// <summary>
+        /// 搜索子物体组件-Transform版
+        /// </summary>
+        public static T Get<T>(Transform go, string subnode) where T : Component
+        {
+            if (go != null)
+            {
+                Transform sub = go.Find(subnode);
+                if (sub != null) return sub.GetComponent<T>();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 搜索子物体组件-Component版
+        /// </summary>
+        public static T Get<T>(Component go, string subnode) where T : Component
+        {
+            return go.transform.Find(subnode).GetComponent<T>();
+        }
+
+        /// <summary>
+        /// 查找子对象
+        /// </summary>
+        public static GameObject Child(GameObject go, string subnode)
+        {
+            return Child(go.transform, subnode);
+        }
+
+        /// <summary>
+        /// 查找子对象
+        /// </summary>
+        public static GameObject Child(Transform go, string subnode)
+        {
+            Transform tran = go.Find(subnode);
+            if (tran == null) return null;
+            return tran.gameObject;
+        }
+
+        /// <summary>
+        /// 取平级对象
+        /// </summary>
+        public static GameObject Peer(GameObject go, string subnode)
+        {
+            return Peer(go.transform, subnode);
+        }
+
+        /// <summary>
+        /// 取平级对象
+        /// </summary>
+        public static GameObject Peer(Transform go, string subnode)
+        {
+            Transform tran = go.parent.Find(subnode);
+            if (tran == null) return null;
+            return tran.gameObject;
+        }
+
+        /// <summary>
         /// 实例化物体
         /// </summary>
         /// <param name="prefab">预制体</param>
@@ -153,6 +261,31 @@ namespace UniversalTools
             GameObject temp = GameObject.Instantiate(prefab, parent);
             temp.transform.localPosition = Vector3.zero;
             temp.transform.localScale = Vector3.one;
+        }
+
+        /// <summary>
+        /// 添加组件
+        /// </summary>
+        public static T Add<T>(GameObject go) where T : Component
+        {
+            if (go != null)
+            {
+                T[] ts = go.GetComponents<T>();
+                for (int i = 0; i < ts.Length; i++)
+                {
+                    if (ts[i] != null) GameObject.Destroy(ts[i]);
+                }
+                return go.gameObject.AddComponent<T>();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 添加组件
+        /// </summary>
+        public static T Add<T>(Transform go) where T : Component
+        {
+            return Add<T>(go.gameObject);
         }
 
         /// <summary>
@@ -205,6 +338,137 @@ namespace UniversalTools
                 array[i] = temp;
             }
             return array;
+        }
+
+
+        /// <summary>
+        /// 清理内存(全部清空)
+        /// </summary>
+        public static void ClearMemory()
+        {
+            Resources.UnloadUnusedAssets();
+            GC.Collect();
+        }
+
+        /// <summary>
+        /// 网络可用
+        /// </summary>
+        public static bool NetAvailable
+        {
+            get
+            {
+                return Application.internetReachability != NetworkReachability.NotReachable;
+            }
+        }
+
+        /// <summary>
+        /// 是否是无线
+        /// </summary>
+        public static bool IsWifi
+        {
+            get
+            {
+                return Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork;
+            }
+        }
+
+        /// <summary>
+        /// 是否为数字
+        /// </summary>
+        public static bool IsNumber(string strNumber)
+        {
+            Regex regex = new Regex("[^0-9]");
+            return !regex.IsMatch(strNumber);
+        }
+
+        /// <summary>
+        /// 清除所有子节点
+        /// </summary>
+        public static void ClearChild(Transform go)
+        {
+            if (go == null) return;
+            for (int i = go.childCount - 1; i >= 0; i--)
+            {
+                GameObject.Destroy(go.GetChild(i).gameObject);
+            }
+        }
+
+
+        /// <summary>
+        /// HashToMD5Hex
+        /// </summary>
+        public static string HashToMD5Hex(string sourceStr)
+        {
+            byte[] Bytes = Encoding.UTF8.GetBytes(sourceStr);
+            using (MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider())
+            {
+                byte[] result = md5.ComputeHash(Bytes);
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < result.Length; i++)
+                    builder.Append(result[i].ToString("x2"));
+                return builder.ToString();
+            }
+        }
+
+        /// <summary>
+        /// 计算字符串的MD5值
+        /// </summary>
+        public static string md5(string source)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] data = System.Text.Encoding.UTF8.GetBytes(source);
+            byte[] md5Data = md5.ComputeHash(data, 0, data.Length);
+            md5.Clear();
+
+            string destString = "";
+            for (int i = 0; i < md5Data.Length; i++)
+            {
+                destString += System.Convert.ToString(md5Data[i], 16).PadLeft(2, '0');
+            }
+            destString = destString.PadLeft(32, '0');
+            return destString;
+        }
+        /// <summary>
+        /// 登录时使用的md5计算
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public string Md5Sum(string input)
+        {
+            System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hash = md5.ComputeHash(inputBytes);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 计算文件的MD5值
+        /// </summary>
+        public static string md5file(string file)
+        {
+            try
+            {
+                FileStream fs = new FileStream(file, FileMode.Open);
+                System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(fs);
+                fs.Close();
+
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("md5file() fail, error:" + ex.Message);
+            }
         }
 
         /// <summary>
@@ -369,7 +633,7 @@ namespace UniversalTools
         }
 
         /// <summary>
-        /// 通用的地址                                                      
+        /// 读取移动设备和编辑器地址                                                
         /// </summary>
         public static string AssetPath
         {
@@ -432,5 +696,8 @@ namespace UniversalTools
         }
 
     }
+
+
+
 
 }
