@@ -70,6 +70,7 @@
     <Compile Include="UGUIDragFollow.cs" />
     <Compile Include="UGUIEventTriggerListern.cs" />
     <Compile Include="UIPage.cs" />
+    <Compile Include="UnityEventArgs.cs" />
     <Compile Include="UntiyMath.cs" />
     <Compile Include="VerticalText.cs" />
   </ItemGroup>
