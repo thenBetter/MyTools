@@ -32,6 +32,11 @@ namespace UniversalTools
             return Mathf.Approximately(a, b);
         }
 
+        public static bool ApproximateTwoValue(float a, float b)
+        {
+            return Math.Abs(a - b) > 0.0f;
+        }
+
         public static Color StringToColor(string value, char split)
         {
             if (string.IsNullOrEmpty(value)) return Color.white;

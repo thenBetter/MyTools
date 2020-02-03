@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Net.Security;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -168,6 +169,103 @@ namespace UniversalTools
                 length += info.advance;
             }
             return length;
+        }
+
+        private const BindingFlags NonPublicBindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+
+        /// <summary>
+        /// 获取一个实例中的属性值或字段值
+        /// </summary>
+        /// <param name="obj">具体实例</param>
+        /// <param name="name">属性名或字段名</param>
+        /// <param name="flags">属性或字段的筛选标志</param>
+        /// <returns></returns>
+        public static object GetPropertyOrFieldValue(object obj, string name, BindingFlags flags = NonPublicBindingFlags)
+        {
+            Type objType = obj.GetType();
+
+            FieldInfo fInfo = objType.GetField(name, flags);
+            if (fInfo != null)
+            {
+                return fInfo.GetValue(obj);
+            }
+
+            PropertyInfo pInfo = objType.GetProperty(name, flags);
+            if (pInfo != null)
+            {
+                return pInfo.GetValue(obj, null);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// set a object property or filed value
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="flags"></param>
+        /// <returns></returns>
+        public static bool SetPropertyOrFieldValue(object obj, string name, object value, BindingFlags flags = NonPublicBindingFlags)
+        {
+            Type objType = obj.GetType();
+
+            FieldInfo fInfo = objType.GetField(name, flags);
+            if (fInfo != null)
+            {
+#if DEBUG
+                try
+                {
+#endif
+                    fInfo.SetValue(obj, value);
+#if DEBUG
+                }
+                catch (Exception e)
+                {
+                   UnityEngine.Debug.Log(e);
+                }
+#endif
+                return true;
+            }
+
+            PropertyInfo pInfo = objType.GetProperty(name, flags);
+            if (pInfo != null)
+            {
+#if DEBUG
+                try
+                {
+#endif
+                    pInfo.SetValue(obj, value, null);
+#if DEBUG
+                }
+                catch (Exception e)
+                {
+                    UnityEngine.Debug.Log(e);
+                }
+#endif
+                return true;
+            }
+
+            return false;
+        }
+
+
+
+        /// <summary> 返回目标物体的完整层级
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string GetHierarchy(GameObject obj)
+        {
+            string path = obj.name;
+
+            while (obj.transform.parent != null)
+            {
+                obj = obj.transform.parent.gameObject;
+                path = string.Format(@"{0}\{1}", obj.name, path);
+            }
+            return string.Format(@"\{0}\", path);
         }
 
 
