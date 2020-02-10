@@ -63,6 +63,7 @@
     <Compile Include="IUpdateNode.cs" />
     <Compile Include="LogInfo.cs" />
     <Compile Include="MessageCenter.cs" />
+    <Compile Include="MouseLook.cs" />
     <Compile Include="OnDontDestroySingleton.cs" />
     <Compile Include="OpenAndSaveDialog.cs" />
     <Compile Include="PageContentManger.cs" />
