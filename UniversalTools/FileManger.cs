@@ -21,12 +21,20 @@ namespace UniversalTools
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
         }
-
+        /// <summary>
+        /// 文件是否存在
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static bool IsExitFileInfo(string path)
         {
             return File.Exists(path);
         }
 
+        /// <summary>
+        /// 创建文件
+        /// </summary>
+        /// <param name="path"></param>
         public static void CreateFile(string path)
         {
             if (!IsExitFileInfo(path))
@@ -34,7 +42,7 @@ namespace UniversalTools
         }
 
         /// <summary>
-        /// 获取文件夹下的所有文件
+        /// 获取文件夹下的所有文件总数
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -70,11 +78,22 @@ namespace UniversalTools
                 bytes = File.ReadAllBytes(path);
         }
 
+        /// <summary>
+        /// 获取文件夹下所有文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="extension"></param>
+        /// <returns></returns>
         public static FileInfo[] fileInfo(string path, string extension)
         {
             DirectoryInfo folder = new DirectoryInfo(path);
             FileInfo[] info = folder.GetFiles(string.Format("*.{0}", extension), SearchOption.TopDirectoryOnly);
             return info;
+        }
+
+        public static string ReadFileContent(string path)
+        {
+            return File.ReadAllText(path);
         }
     }
 }
