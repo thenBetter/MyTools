@@ -84,7 +84,7 @@ namespace FSM
 
         public bool HasState(T state)
         {
-            return mStateFuncs.Contains(state);
+            return mStateFuncs.Contains<>(state);
         }
     }
 }
