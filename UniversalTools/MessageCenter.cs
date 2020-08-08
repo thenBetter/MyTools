@@ -20,4 +20,7 @@ public abstract class MessageCenter
     private Dictionary<string, Message> _dictionary;
 
     public abstract void AddLisetner();
+    
+    
+    
 }
