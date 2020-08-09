@@ -22,5 +22,8 @@ public abstract class MessageCenter
     public abstract void AddLisetner();
 
     public abstract void Test();
+    
+    
+    
 
 }
