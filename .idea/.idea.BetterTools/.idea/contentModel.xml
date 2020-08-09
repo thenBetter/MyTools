@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Administrator\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Administrator\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_BetterTools.360221021.00" t="ExcludeRecursive" />
+    <e p="E:\C#\MyTools" t="IncludeFlat">
+      <e p="BetterTools" t="IncludeRecursive">
+        <e p="BetterTools.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="BetterTools.sln" t="IncludeFlat" />
+      <e p="Editor" t="Include" />
+      <e p="FSM" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="FSM.csproj" t="IncludeRecursive" />
+        <e p="FsmManger.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="UniversalTools" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BlackBoard.cs" t="Include" />
+        <e p="Class1.cs" t="Include" />
+        <e p="Convert.cs" t="Include" />
+        <e p="CoroutineRunner.cs" t="Include" />
+        <e p="FileDlg.cs" t="Include" />
+        <e p="FileManger.cs" t="Include" />
+        <e p="FPSManger.cs" t="Include" />
+        <e p="GlobalMethods.cs" t="Include" />
+        <e p="HideMobileKeyBoard.cs" t="Include" />
+        <e p="HttpDownLoad.cs" t="Include" />
+        <e p="IUpdateNode.cs" t="Include" />
+        <e p="LogInfo.cs" t="Include" />
+        <e p="MessageCenter.cs" t="Include" />
+        <e p="MouseLook.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="OnDontDestroySingleton.cs" t="Include" />
+        <e p="OpenAndSaveDialog.cs" t="Include" />
+        <e p="PageContentManger.cs" t="Include" />
+        <e p="Pool.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Singleton.cs" t="Include" />
+        <e p="UGUIDragFollow.cs" t="Include" />
+        <e p="UGUIEventTriggerListern.cs" t="Include" />
+        <e p="UIPage.cs" t="Include" />
+        <e p="UnityEventArgs.cs" t="Include" />
+        <e p="UniversalTools.csproj" t="IncludeRecursive" />
+        <e p="UntiyMath.cs" t="Include" />
+        <e p="Updater.cs" t="Include" />
+        <e p="VerticalText.cs" t="Include" />
+        <e p="XmlTools.cs" t="Include" />
+      </e>
+    </e>
+  </component>
+</project>
