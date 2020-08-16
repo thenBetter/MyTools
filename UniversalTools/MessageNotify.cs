@@ -10,17 +10,22 @@ using Object = System.Object;
 /// <summary>
 /// 消息结构
 /// </summary>
-public class Message
+//public class Message
+//{
+//    public string msgName;
+
+//    public Object obj;
+
+//    public Message(string msgName, Object obj)
+//    {
+//        this.msgName = msgName;
+//        this.obj = obj;
+//    }
+//}
+
+public abstract class Message
 {
-    public string msgName;
-
-    public Object obj;
-
-    public Message(string msgName, Object obj)
-    {
-        this.msgName = msgName;
-        this.obj = obj;
-    }
+    public string msgNmae;
 }
 
 public class MessageNotify
