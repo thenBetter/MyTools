@@ -192,6 +192,20 @@ public class MessageNotify
         }
     }
 
+    public T GetMessageAttribute<T>(Object o) where T : class
+    {
+        try
+        {
+            T t = o as T;
+            return t;
+        }
+        catch (Exception ex)
+        {
+            UnityEngine.Debug.Log(ex.ToString());
+            return default(T);
+        }
+    }
+
     public void PrintAllMsg()
     {
         foreach (List<MSGListener> item in msgListenerArray.Values)
