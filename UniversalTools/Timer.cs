@@ -114,7 +114,7 @@ namespace UniversalTools
 
         public RegisterTimerAttribute()
         {
-            msgName = "RegisterTimer";
+            msgNmae = "RegisterTimer";
         }
     }
 
@@ -124,9 +124,7 @@ namespace UniversalTools
 
         public CancelTimerAttribute()
         {
-            msgName = "CancelTimer";
+            msgNmae = "CancelTimer";
         }
     }
-
-}
 }
