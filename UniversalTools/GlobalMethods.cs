@@ -793,6 +793,32 @@ namespace UniversalTools
             vectors.Add(new Vector2(p4.x, p4.y));
         }
 
+
+        /// <summary>
+        /// 左右手坐标系转换
+        /// </summary>
+        /// <param name="leftPos"></param>
+        /// <returns></returns>
+        public static Vector3 LeftPosToRightPos(Vector3 leftPos)
+        {
+            return Vector3.zero;
+        }
+
+        /// <summary>
+        /// 一个点在一个平面上的投影点
+        /// </summary>
+        /// <param name="trans"></param>
+        /// <param name="distance">点和凭平面的距离</param>
+        /// <returns></returns>
+        public static Vector3 ProjectionPos(Transform trans, float distance)
+        {
+            Vector3 point = Vector3.zero;
+            float angle = Vector3.Dot(Vector3.forward, trans.forward);
+            float realDistance = distance / angle;
+            point = trans.position + realDistance * trans.forward;
+            return point;
+        }
+
     }
 
 

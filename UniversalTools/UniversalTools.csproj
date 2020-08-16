@@ -62,7 +62,7 @@
     <Compile Include="HttpDownLoad.cs" />
     <Compile Include="IUpdateNode.cs" />
     <Compile Include="LogInfo.cs" />
-    <Compile Include="MessageCenter.cs" />
+    <Compile Include="MessageNotify.cs" />
     <Compile Include="MouseLook.cs" />
     <Compile Include="OnDontDestroySingleton.cs" />
     <Compile Include="OpenAndSaveDialog.cs" />
